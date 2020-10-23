@@ -3,10 +3,10 @@ import { makeStyles } from '@material-ui/core'
 export default makeStyles((theme) => ({
   root: {
     width: 800,
-    height: 400,
+    height: 'auto',
     backgroundColor: '#a1a1a1',
     margin: 'auto',
-    marginTop: 80,
+    marginTop: 20,
     padding: 25,
     '&:focus': {
       outline: 'none',
@@ -15,9 +15,16 @@ export default makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+    flexDirection: 'column',
     [theme.breakpoints.down('xs')]: {
       width: '80%',
     },
   },
-  slider: { width: 300, marginLeft: 20 },
+
+  slider: { width: 300, marginLeft: 200 },
+  BoxStyle: {
+    display: 'flex',
+    flexDirection: 'row',
+    paddingTop: 15,
+  },
 }))

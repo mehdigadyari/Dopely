@@ -2,15 +2,14 @@ import React, { useEffect, useState } from 'react'
 import { TextField } from '@material-ui/core'
 import useStyles from './HexInput.styles'
 
-export default function HexInput() {
+export default function HexInput({ hex, HexOf }) {
   const styles = useStyles()
-  const [hex, setHex] = useState('#')
+
   const [hexErr, setHexErr] = useState(false)
   useEffect(() => {
     let hexPattern = /^#([0-9A-F]{3}){1,2}$/i
     if (hexPattern.test(hex) || hex === '#') {
       setHexErr(false)
-      localStorage.setItem('hex', hex)
     } else {
       setHexErr(true)
     }
@@ -19,7 +18,7 @@ export default function HexInput() {
     <div style={{ backgroundColor: hex }} className={styles.root}>
       <TextField
         value={hex}
-        onChange={(e) => setHex(e.target.value)}
+        onChange={HexOf}
         error={hexErr}
         id="outlined-basic"
         fullWidth

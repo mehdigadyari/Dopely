@@ -5,10 +5,6 @@ export default makeStyles(() => ({
     width: '100%',
     minHeight: '100vh',
     display: 'flex',
-    flexDirection: 'row',
+    flexDirection: 'column',
   },
-  // hexInput: {
-  //   justifyContent: 'center',
-  //   alignItems: 'center',
-  // },
 }))
