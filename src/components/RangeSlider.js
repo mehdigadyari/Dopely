@@ -11,35 +11,6 @@ export default function RangeSlider({ hex }) {
   const createRangeNum = (e, d) => {
     setRangeNum(d)
   }
-
-  function convertHex(hex) {
-    console.log(`hex is ${hex}`)
-    hex = hex.replace('#', '')
-    let r = parseInt(hex.substring(0, 2), 16)
-    let g = parseInt(hex.substring(2, 4), 16)
-    let b = parseInt(hex.substring(4, 6), 16)
-
-    // console.log(`r is ${r}`)
-    // console.log(`g is ${g}`)
-    // console.log(`b is ${b}`)
-
-    let stepr = Math.floor(r / rangeNum)
-    let stepg = Math.floor(g / rangeNum)
-    let stepb = Math.floor(b / rangeNum)
-
-    let colors = []
-    for (let i = 0; i < rangeNum; i++) {
-      colors[i] = 'rgba(' + r + ',' + g + ',' + b + ')'
-      r = r - stepr
-      g = g - stepg
-      b = b - stepb
-    }
-    console.log(colors)
-    return colors
-  }
-
-  let colors = convertHex(hex)
-
   const createRange = (n) => {
     let foo = []
     for (var i = 1; i <= n; i++) {
@@ -48,6 +19,38 @@ export default function RangeSlider({ hex }) {
     setRange(foo)
     // console.log(foo)
   }
+  function convertHex(hex) {
+    hex = hex.slice(1) // حذف مربع
+
+    if (hex.length === 3) {
+      hex = '' + hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2]
+    }
+    let r = parseInt(hex.slice(0, 2), 16)
+    let g = parseInt(hex.slice(2, 4), 16)
+    let b = parseInt(hex.slice(4, 6), 16)
+
+    let stepr = Math.ceil(r / (rangeNum - 1))
+    let stepg = Math.ceil(g / (rangeNum - 1))
+    let stepb = Math.ceil(b / (rangeNum - 1))
+
+    let colors = []
+    for (let i = 0; i < rangeNum; i++) {
+      colors[i] = 'rgba(' + r + ',' + g + ',' + b + ')'
+      r = r - stepr
+      g = g - stepg
+      b = b - stepb
+      if ((r <= 0) & (g <= 0) & (b <= 0)) {
+        r = 0
+        g = 0
+        b = 0
+      }
+    }
+
+    return colors
+  }
+
+  let colors = convertHex(hex)
+
   useEffect(() => {
     createRange(rangeNum)
   }, [rangeNum])

@@ -7,13 +7,11 @@ import useStyles from './MasterLayout.styles'
 export default function MasterLayout() {
   const classes = useStyles()
   const [hex, setHex] = useState('#')
-  const HexOf = (e) => {
-    setHex(e.target.value)
-  }
+
   return (
     <div className={classes.root}>
       <Grid item lg={12}>
-        <HexInput hex={hex} HexOf={HexOf} />
+        <HexInput hex={hex} setHex={setHex} />
       </Grid>
       <Grid item lg={12}>
         <RangeSlider hex={hex} />
