@@ -23,7 +23,10 @@ export default makeStyles((theme) => ({
 
   slider: { width: 300, marginLeft: 200 },
   BoxStyle: {
+    width: '99%',
+    height: 'auto',
     display: 'flex',
+    flexWrap: 'wrap',
     flexDirection: 'row',
     paddingTop: 15,
   },
